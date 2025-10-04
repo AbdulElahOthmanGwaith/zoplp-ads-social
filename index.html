@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- App Information -->
+  <title>ZOPLP ADS - شبكة اجتماعية للإعلانات</title>
+  <meta name="description" content="منصة اجتماعية حديثة للإعلانات والتفاعل مع المحتوى">
+  <meta name="keywords" content="إعلانات، شبكة اجتماعية، تفاعل، محتوى">
+  <meta name="author" content="ZOPLP ADS">
+  
+  <!-- PWA Configuration -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#2B5D3A">
+  <meta name="background-color" content="#ffffff">
+  
+  <!-- Apple-specific PWA settings -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="ZOPLP ADS">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  
+  <!-- Additional meta tags for better SEO -->
+  <meta property="og:title" content="ZOPLP ADS - شبكة اجتماعية للإعلانات">
+  <meta property="og:description" content="منصة اجتماعية حديثة للإعلانات والتفاعل مع المحتوى">
+  <meta property="og:image" content="/icons/og-image.png">
+  <meta property="og:url" content="https://your-domain.com">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZOPLP ADS">
+  <meta name="twitter:description" content="منصة اجتماعية حديثة للإعلانات والتفاعل مع المحتوى">
+  <meta name="twitter:image" content="/icons/twitter-image.png">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+  
+  <!-- PWA Installation and Service Worker -->
+  <script>
+    // تسجيل Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((registration) => {
+            console.log('✅ Service Worker تم تسجيله بنجاح:', registration.scope);
+          })
+          .catch((error) => {
+            console.log('❌ فشل في تسجيل Service Worker:', error);
+          });
+      });
+    }
+
+    // إظهار رسالة التثبيت
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      console.log('💡 يمكن تثبيت التطبيق الآن');
+      e.preventDefault();
+      deferredPrompt = e;
+      
+      // يمكنك إظهار زر "تثبيت التطبيق" هنا
+      // showInstallButton();
+    });
+
+    // معالج تثبيت التطبيق
+    window.addEventListener('appinstalled', (evt) => {
+      console.log('🎉 تم تثبيت التطبيق بنجاح');
+      deferredPrompt = null;
+    });
+
+    // دالة لتثبيت التطبيق (يمكن استدعاؤها من زر في التطبيق)
+    window.installApp = async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log(`🔔 المستخدم ${outcome === 'accepted' ? 'وافق' : 'رفض'} تثبيت التطبيق`);
+        deferredPrompt = null;
+      }
+    };
+  </script>
+</body>
+
+</html>

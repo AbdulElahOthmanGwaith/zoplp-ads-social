@@ -1,0 +1,257 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Arabic RTL Support */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] .space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+/* Custom Arabic Font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Noto Sans Arabic', system-ui, -apple-system, sans-serif;
+  direction: rtl;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Animation for recording pulse */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Voice recorder wave animation */
+@keyframes wave {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(2);
+  }
+}
+
+.voice-wave {
+  animation: wave 1s ease-in-out infinite;
+}
+
+/* Blue theme colors */
+:root {
+  --primary-blue: #2563eb;
+  --primary-blue-hover: #1d4ed8;
+  --secondary-green: #10b981;
+  --secondary-green-hover: #059669;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+}
+
+/* Custom button styles */
+.btn-primary {
+  background-color: var(--primary-blue);
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-blue-hover);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-green);
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-green-hover);
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Input focus styles */
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Avatar styles */
+.avatar-online::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  background-color: var(--secondary-green);
+  border: 2px solid white;
+  border-radius: 50%;
+}
+
+/* Notification badge */
+.notification-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ef4444;
+  color: white;
+  border-radius: 50%;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Audio waveform animation */
+.audio-waveform {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.audio-waveform .wave-bar {
+  width: 3px;
+  background-color: var(--primary-blue);
+  border-radius: 2px;
+  animation: wave-bars 1.5s ease-in-out infinite;
+}
+
+.audio-waveform .wave-bar:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.audio-waveform .wave-bar:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.audio-waveform .wave-bar:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+@keyframes wave-bars {
+  0%, 100% {
+    height: 4px;
+  }
+  50% {
+    height: 20px;
+  }
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .text-responsive {
+    font-size: 0.875rem;
+  }
+  
+  .space-responsive {
+    gap: 0.5rem;
+  }
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Success and error states */
+.success-state {
+  border-color: var(--secondary-green);
+  background-color: rgba(16, 185, 129, 0.05);
+}
+
+.error-state {
+  border-color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+/* Social media specific styles */
+.post-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+}
+
+.post-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.voice-comment {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border-radius: 18px;
+  padding: 12px 16px;
+  border: 1px solid #93c5fd;
+}
+
+.text-comment {
+  background: #f8fafc;
+  border-radius: 18px;
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0;
+}
