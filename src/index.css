@@ -12,7 +12,7 @@
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
@@ -23,11 +23,11 @@
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
-/* Hide scrollbar */
+/* إخفاء شريط التمرير */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -37,21 +37,16 @@
   display: none;
 }
 
+/* صور وألوان وتأثيرات */
 img {
   object-position: top;
 }
 
-.fixed {
-  position: fixed;
-}
-
-/* Facebook-style hover effects */
 .facebook-hover:hover {
   background-color: rgba(0, 0, 0, 0.05);
   transition: background-color 0.2s ease;
 }
 
-/* Blue theme colors */
 .facebook-blue {
   color: #1877F2;
 }
